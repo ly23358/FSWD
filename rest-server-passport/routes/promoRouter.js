@@ -9,7 +9,7 @@ var promoRouter = express.Router();
 promoRouter.use(bodyParser.json());
 
 promoRouter.route('/')
-    .get(Verify.verifyOrdinaryUser, function(req, res, next) {
+    .get(function(req, res, next) {
         Promotions.find({}, function(err, promotion) {
             if(err) throw err;
             res.json(promotion);
@@ -34,7 +34,7 @@ promoRouter.route('/')
     });
 
 promoRouter.route('/:promoId')
-    .get(Verify.verifyOrdinaryUser, function(req, res, next) {
+    .get(function(req, res, next) {
         Promotions.findById(req.params.promoId, function(err, promotion) {
             if(err) throw err;
             res.json(promotion);
